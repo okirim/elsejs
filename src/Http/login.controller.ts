@@ -44,7 +44,7 @@ export class LoginController {
         const { email, password } = req.body;
         if (email === 'okirimkadiro@gmail.com' && password === 'poisson') {
             req.session = { loggedIn: true, name: 'okirim' };
-            res.redirect('/');
+            res.redirect('/hello');
         }
         else {
             res.send('Error invalid email or password')
@@ -59,6 +59,11 @@ export class LoginController {
   
 
    
-
+    @GET('/hello')
+    hello(req: ReqGuard, res: Response): void { 
+        res.send(`
+        <h1>hello !!</h1>
+        `)
+    }
 
 }

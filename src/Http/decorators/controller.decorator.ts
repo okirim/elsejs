@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Router } from '../../router/router.singelton';
+import { Router } from '../../singeltons/router.singelton';
 import { HttpMethods } from './enums/enum.httpMethods';
 import { metadata } from './enums/enum.metadata';
 import { requiredData } from './validator.decorator';

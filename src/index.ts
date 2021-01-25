@@ -2,8 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser'
 
 import cookieSession from 'cookie-session'
-import './controller/login.controller';
-import { Router } from './router/router.singelton';
+import './Http/controllers';
+import { Router } from './singeltons/router.singelton';
 
 
 const app = express();
