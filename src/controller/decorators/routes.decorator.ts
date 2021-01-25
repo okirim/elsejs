@@ -1,10 +1,16 @@
 import "reflect-metadata";
 import { HttpMethods } from "./enums/enum.httpMethods";
 import { metadata } from "./enums/enum.metadata";
+import { RequestHandler } from 'express';
+
+
+interface CheckControllerFunction extends PropertyDescriptor{
+value?:RequestHandler,
+}
 
 function RouteMethod(method: string) {
     return function (path: string) {
-        return function (target: any, key: string, descriptor: PropertyDescriptor) {
+        return function (target: any, key: string, descriptor: CheckControllerFunction) {
             Reflect.defineMetadata(metadata.path, path, target, key);
             Reflect.defineMetadata(metadata.method, method, target, key);
         };

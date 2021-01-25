@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from 'express'
-import { CatchAsync } from '../middleware/handleAsyncError.middleware';
-import { controller, GET, middleware, POST, validator } from './decorators';
+import { CatchError } from '../middlewares/HandleAsyncError';
+import { controller, GET, middleware, POST, required } from './decorators';
 
 interface ReqGuard extends Request {
     body: { [key: string]: string | undefined }
@@ -11,6 +11,7 @@ function requireAuth(req: Request, res: Response, next: NextFunction): void  {
     next();
 
 };
+
 function requireAuth2(req: Request, res: Response, next: NextFunction): void {
     console.log('2-------');
     next();
@@ -29,14 +30,16 @@ export class LoginController {
     <label for="email">Email</label>
     <input type="text" name="email" id="email" />
     <label for="password">password</label>
-    <input type="password" name="passworsd" id="password"/>
+    <input type="password" name="password" id="password"/>
     <button>login</button>
     </form>
     `)
     };
+
+   
     
     @POST('/login')
-    @validator('email', 'password')    
+    @required('email', 'password')    
      login(req: ReqGuard, res: Response): void  {
         const { email, password } = req.body;
         if (email === 'okirimkadiro@gmail.com' && password === 'poisson') {

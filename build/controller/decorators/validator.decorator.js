@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.requiredData = exports.validator = void 0;
+exports.requiredData = exports.required = void 0;
 require("reflect-metadata");
 var enum_metadata_1 = require("./enums/enum.metadata");
-function validator() {
+function required() {
     var inputsName = [];
     for (var _i = 0; _i < arguments.length; _i++) {
         inputsName[_i] = arguments[_i];
@@ -12,7 +12,7 @@ function validator() {
         Reflect.defineMetadata(enum_metadata_1.metadata.validator, inputsName, target, key);
     };
 }
-exports.validator = validator;
+exports.required = required;
 function requiredData(inputs) {
     return function (req, res, next) {
         if (!req.body) {

@@ -29,7 +29,7 @@ var LoginController = /** @class */ (function () {
         });
     }
     LoginController.prototype.loginForm = function (req, res) {
-        res.send("\n    <form method=\"POST\" action=\"/login\">\n    <label for=\"email\">Email</label>\n    <input type=\"text\" name=\"email\" id=\"email\" />\n    <label for=\"password\">password</label>\n    <input type=\"password\" name=\"passworsd\" id=\"password\"/>\n    <button>login</button>\n    </form>\n    ");
+        res.send("\n    <form method=\"POST\" action=\"/login\">\n    <label for=\"email\">Email</label>\n    <input type=\"text\" name=\"email\" id=\"email\" />\n    <label for=\"password\">password</label>\n    <input type=\"password\" name=\"password\" id=\"password\"/>\n    <button>login</button>\n    </form>\n    ");
     };
     ;
     LoginController.prototype.login = function (req, res) {
@@ -52,7 +52,7 @@ var LoginController = /** @class */ (function () {
     ], LoginController.prototype, "loginForm", null);
     __decorate([
         decorators_1.POST('/login'),
-        decorators_1.validator('email', 'password'),
+        decorators_1.required('email', 'password'),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object, Object]),
         __metadata("design:returntype", void 0)
