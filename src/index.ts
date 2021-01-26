@@ -1,15 +1,17 @@
 import express from 'express';
+import './database/mongodb';
 import bodyParser from 'body-parser'
 
 import cookieSession from 'cookie-session'
 import './Http/controllers';
 import { Router } from './singeltons/router.singelton';
+import { App } from './singeltons/app.singelton';
 
 
-const app = express();
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieSession({ keys: ['setRandomKeyString'] }))
+
+App.instance.use(bodyParser.urlencoded({ extended: true }))
+App.instance.use(cookieSession({ keys: ['setRandomKeyString'] }))
 
 
-app.use(Router.instance);
-app.listen(3000);
+App.instance.use(Router.instance);
+App.instance.listen(3000);

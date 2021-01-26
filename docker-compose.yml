@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - data_db:/data/db
+    env_file:
+      - ./.env  
+  api:
+    build: .
+    volumes:
+      - ./.:/app
+      - logs:/app/logs
+      - /app/node_modules
+    env_file: 
+      - ./.env
+    ports: 
+      - "80:80"
+    depends_on:
+      - mongodb
+  redis:
+    image: redis:6.0.9-alpine
+    ports:
+        - "6382:6379"            
+volumes:
+    data_db:
+    logs:  
