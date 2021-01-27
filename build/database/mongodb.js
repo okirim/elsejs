@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importDefault(require("mongoose"));
-require("dotenv/config");
 var DB_MONGOOSE_URL = process.env.DB_LOCAL;
 if (process.env.NODE_ENV = 'production') {
     DB_MONGOOSE_URL = process.env.DB_MONGOOSE_URL;

@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import "dotenv/config";
-
-
 let DB_MONGOOSE_URL = process.env.DB_LOCAL;
 
 if (process.env.NODE_ENV = 'production') {
