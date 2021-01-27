@@ -10,7 +10,35 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HandlingErrors = void 0;
 var AppError_1 = require("./AppError");
+exports.HandlingErrors = function (err, req, res, next) {
+    err.statusCode = err.statusCode || 500;
+    err.status = err.status || "error";
+    if (process.env.NODE_ENV == "developement") {
+        devErrorResponse(err, res);
+    }
+    else if (process.env.NODE_ENV == "production") {
+        //others errors
+        var error = __assign({}, err);
+        // console.log(`---------------${err.name}--------------`)
+        if (error.name === "CastError")
+            error = handleCastErrorDB(error); //invalid ID
+        if (error.code === 11000)
+            error = handleDuplicateFieldsDB(error); //duplicate database field
+        if (err.name === "ValidationError")
+            error = handleValidationErrorDB(error); //validation error 
+        if (err.name === 'TokenExpiredError')
+            error = jwtExpiredToken();
+        if (err.name === "JsonWebTokenError")
+            error = jwtErrorToken();
+        if (err.name === "NotBeforeError")
+            error = jwtTokenInvalidBefore();
+        prodErrorResponse(error, res);
+    }
+    ;
+};
 /*
   @devlopement env
 */
@@ -75,30 +103,4 @@ var jwtErrorToken = function () {
 var jwtTokenInvalidBefore = function () {
     //return new AppError(`invalid token before ${err.date}`, 401);
     return new AppError_1.AppError("invalid token bedfore incoming date", 401);
-};
-module.exports = function (err, req, res, next) {
-    err.statusCode = err.statusCode || 500;
-    err.status = err.status || "error";
-    if (process.env.NODE_ENV == "developement") {
-        devErrorResponse(err, res);
-    }
-    else if (process.env.NODE_ENV == "production") {
-        //others errors
-        var error = __assign({}, err);
-        // console.log(`---------------${err.name}--------------`)
-        if (error.name === "CastError")
-            error = handleCastErrorDB(error); //invalid ID
-        if (error.code === 11000)
-            error = handleDuplicateFieldsDB(error); //duplicate database field
-        if (err.name === "ValidationError")
-            error = handleValidationErrorDB(error); //validation error 
-        if (err.name === 'TokenExpiredError')
-            error = jwtExpiredToken();
-        if (err.name === "JsonWebTokenError")
-            error = jwtErrorToken();
-        if (err.name === "NotBeforeError")
-            error = jwtTokenInvalidBefore();
-        prodErrorResponse(error, res);
-    }
-    ;
 };

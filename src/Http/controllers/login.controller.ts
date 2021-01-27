@@ -25,14 +25,14 @@ function getToken(id) {
 @controller("/users")
 export class LoginController {
 
-  @POST("/login")
+  @GET("/login")
   @catchError()
   async login(req: RequestController, res: Response, next: NextFunction) {
    
     res.send(`
-    kadiro
+    <h1>kadiro</h1>
     `)
-    next(new AppError('hello errora', 600))
+//next(new AppError('hello errora', 600))
   }
    
 }

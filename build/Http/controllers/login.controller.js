@@ -51,7 +51,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoginController = void 0;
 var BaseController_1 = require("../BaseController");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-var AppError_1 = require("../../utils/AppError");
 var catch_1 = require("../../App/decorators/catch");
 function getToken(id) {
     return jsonwebtoken_1.default.sign({ user_id: id }, process.env.JWT_SECRET, {
@@ -64,14 +63,13 @@ var LoginController = /** @class */ (function () {
     LoginController.prototype.login = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                res.send("\n    kadiro\n    ");
-                next(new AppError_1.AppError('hello errora', 600));
+                res.send("\n    <h1>kadiro</h1>\n    ");
                 return [2 /*return*/];
             });
         });
     };
     __decorate([
-        BaseController_1.POST("/login"),
+        BaseController_1.GET("/login"),
         catch_1.catchError(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object, Object, Function]),
