@@ -5,7 +5,7 @@ import mongoose from 'mongoose'
      private static Instance: mongoose.Mongoose;
     
 
-    static get instance(): any {
+    static get instance(): mongoose.Mongoose {
         if (!Mongoose.Instance) {
             return Mongoose.Instance =  new mongoose.Mongoose();
         }

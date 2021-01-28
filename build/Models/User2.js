@@ -143,7 +143,7 @@ var UserModel = /** @class */ (function (_super) {
                 message: 'password and confirm password field is not the same'
             }
         }),
-        __metadata("design:type", String)
+        __metadata("design:type", Object)
     ], UserModel.prototype, "confirmPassword", void 0);
     __decorate([
         typegoose_1.prop(),

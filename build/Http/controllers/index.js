@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("../BaseController"), exports);
 /**
  * import all your controllers in this file
- * import this file from ./src/index.ts
+ * imported from ./src/App/index.ts
  *
  */
 require("./login.controller");

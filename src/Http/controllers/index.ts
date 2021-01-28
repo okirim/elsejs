@@ -3,7 +3,7 @@ export * from '../BaseController';
 
 /**
  * import all your controllers in this file
- * import this file from ./src/index.ts
+ * imported from ./src/App/index.ts
  * 
  */
 
