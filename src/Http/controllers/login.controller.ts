@@ -14,7 +14,8 @@ import {
 import jwt from 'jsonwebtoken'
 
 import { AppError } from "../../utils/AppError";
-import { catchError } from "../../App/decorators/catch";
+import { catchError } from "../../App/decorators/catchError";
+import { clearCache } from "../../App/decorators/cache";
 
 
 function getToken(id) {
@@ -27,6 +28,7 @@ export class LoginController {
 
   @GET("/login")
   @catchError()
+ 
   async login(req: RequestController, res: Response, next: NextFunction) {
    
     res.send(`

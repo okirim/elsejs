@@ -4,5 +4,6 @@ export enum metadata{
     method = 'method',
     path = 'path',
     validator = 'validator',
-    catchError='error'
+    catchError = 'error',
+    cache='cache'
 }
