@@ -39,65 +39,54 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.caching = void 0;
+exports.clearHach = void 0;
 var mongoose_singelton_1 = require("../App/singeltons/mongoose.singelton");
 var redis_1 = __importDefault(require("redis"));
 var url = "http://localhost:6379";
 var client = redis_1.default.createClient(url);
-// import { promisify } from 'util';
-// import { Mongoose } from '../App/singeltons/mongoose.singelton';
-// client.HGET = promisify(client.HGET)// to return a promise  (we don't like to use callback)
-//------------------------------------------------------
-exports.caching = function () {
-    var exec = mongoose_singelton_1.Mongoose.instance.Query.prototype.exec;
-    //-----------------------------------------------------------
-    //@ts-ignore
-    mongoose_singelton_1.Mongoose.instance.Query.prototype.cache = function (options) {
-        if (options === void 0) { options = { key: 'default' }; }
-        this._cache = true;
-        this._hkey = options.key;
-        return this;
-    };
-    mongoose_singelton_1.Mongoose.instance.Query.prototype.exec = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var key, resultQuery;
-            var _this = this;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        //make the cache() method optional
-                        if (this._cache === false) {
-                            //@ts-ignore
-                            return [2 /*return*/, exec.apply(this, args)];
-                        }
-                        key = JSON.stringify(Object.assign({}, this.getFilter(), { collection: this.mongooseCollection.name }));
-                        //fetch is the key exist in redis
-                        //2/
-                        client.hget(this._hkey, key, function (dataInCache) {
-                            var documents = JSON.parse(dataInCache);
-                            return Array.isArray(documents)
-                                ? documents.map(function (doc) { return new _this.model(doc); }) //if is array
-                                : new _this.model(dataInCache); //if is object 
-                        }); //return data from cache as mongoose document
-                        return [4 /*yield*/, exec.apply(this, args)
-                            //@ts-ignore
-                        ]; //make it on varibale to store it into redis
-                    case 1:
-                        resultQuery = _a.sent() //make it on varibale to store it into redis
-                        ;
-                        //@ts-ignore
-                        client.hset(this._hkey, key, JSON.parse(resultQuery), 'EX', 10);
-                        //end
-                        //@ts-ignore
-                        return [2 /*return*/, result]; //return query result from mangodb
-                }
-            });
-        });
-    };
+var exec = mongoose_singelton_1.Mongoose.instance.Query.prototype.exec;
+//@ts-ignore
+mongoose_singelton_1.Mongoose.instance.Query.prototype.cache = function (options) {
+    if (options === void 0) { options = { key: 'default' }; }
+    this.cacheIsUsed = true;
+    this._hkey = options.key;
+    return this;
 };
-//------------------------------------------------------------------
-// export  clearHach(_hkey)
-// {
-//     client.del(_hkey)
-// }
+mongoose_singelton_1.Mongoose.instance.Query.prototype.exec = function () {
+    return __awaiter(this, void 0, void 0, function () {
+        var key, result;
+        var _this = this;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    //make the cache() method optional
+                    if (this.cacheIsUsed === false) {
+                        //@ts-ignore
+                        return [2 /*return*/, exec.apply(this, args)];
+                    }
+                    key = JSON.stringify(Object.assign({}, this.getFilter(), { collection: this.mongooseCollection.name }));
+                    //fetch if the key exist in redis
+                    client.hget(this._hkey, key, function (dataInCache) {
+                        var documents = JSON.parse(dataInCache);
+                        return Array.isArray(documents)
+                            ? documents.map(function (doc) { return new _this.model(doc); }) //if it's array
+                            : new _this.model(dataInCache); //if it's object 
+                    }); //return data from cache as mongoose document
+                    return [4 /*yield*/, exec.apply(this, args)
+                        //@ts-ignore
+                    ]; //make it on varibale to store it into redis
+                case 1:
+                    result = _a.sent() //make it on varibale to store it into redis
+                    ;
+                    //@ts-ignore
+                    client.hset(this._hkey, key, JSON.stringify(resultQuery), 'EX', 10);
+                    //end
+                    return [2 /*return*/, result]; //return query result from mangodb
+            }
+        });
+    });
+};
+exports.clearHach = function (hkey) {
+    client.del(JSON.stringify(hkey));
+};
 //----hkey should be number or string

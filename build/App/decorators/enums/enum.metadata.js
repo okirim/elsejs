@@ -8,4 +8,5 @@ var metadata;
     metadata["path"] = "path";
     metadata["validator"] = "validator";
     metadata["catchError"] = "error";
+    metadata["cache"] = "cache";
 })(metadata = exports.metadata || (exports.metadata = {}));

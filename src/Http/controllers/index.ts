@@ -9,4 +9,4 @@ export * from '../BaseController';
 
 
 
-import './login.controller';
+export * from './login.controller';

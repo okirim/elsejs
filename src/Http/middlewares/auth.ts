@@ -1,5 +1,5 @@
-import { User } from './../../Models/User/User';
-import { AppError } from "../../utils/AppError";
+import { User } from '../../models/User/User';
+import { AppError } from "../../exceptions/AppError";
 import { promisify } from 'util';
 
 import jwt from 'jsonwebtoken'

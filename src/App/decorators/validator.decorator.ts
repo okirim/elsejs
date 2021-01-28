@@ -3,7 +3,7 @@ import { metadata } from './enums/enum.metadata'
 import { Response, Request, NextFunction, RequestHandler } from 'express';
 
 
-export function required(...inputsName:string[]) {
+export function requiredInputs(...inputsName:string[]) {
     return function (target: any, key: string, descriptor: PropertyDescriptor) {
         Reflect.defineMetadata(metadata.validator, inputsName, target, key);
 

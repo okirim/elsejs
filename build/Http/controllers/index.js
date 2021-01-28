@@ -16,4 +16,4 @@ __exportStar(require("../BaseController"), exports);
  * imported from ./src/App/index.ts
  *
  */
-require("./login.controller");
+__exportStar(require("./login.controller"), exports);

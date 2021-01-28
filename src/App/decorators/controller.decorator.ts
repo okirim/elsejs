@@ -17,7 +17,7 @@ export function controller(prefix: string) {
             const dataFromReq = Reflect.getMetadata(metadata.validator, target.prototype, key) ?? [];
             const validator = requiredData(dataFromReq);
             if (path) {
-                Router.instance?.[method](`${prefix}${path}`, ...middlewares, validator,cacheClear,MethodInController, catchError);
+                Router.instance?.[method](`${prefix}${path}`, ...middlewares, validator,MethodInController, catchError);
             }
 
         }

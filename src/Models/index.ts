@@ -1,1 +1,1 @@
-//export * from './User/User.methods';
+export * from './User/User';

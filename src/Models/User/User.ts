@@ -1,4 +1,4 @@
-import { UserSchema } from './UserSchema'
+import { UserSchema } from './UserSchema';
 import { Mongoose } from "../../App/singeltons/mongoose.singelton";
 const bcrypt = require("bcrypt");
 

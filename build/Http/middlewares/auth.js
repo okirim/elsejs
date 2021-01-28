@@ -40,8 +40,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.auth = void 0;
-var User_1 = require("./../../Models/User/User");
-var AppError_1 = require("../../utils/AppError");
+var User_1 = require("../../models/User/User");
+var AppError_1 = require("../../exceptions/AppError");
 var util_1 = require("util");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 exports.auth = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {

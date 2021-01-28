@@ -1,22 +1,18 @@
-import { User } from "../../Models/User/User";
+import { User } from "../../models/User/User";
 
 import {
   RequestController,
   Response,
-  Request,
   NextFunction,
   controller,
   GET,
   middleware,
   POST,
-  required,
+  requiredInputs,
+  AppError,
+  catchError
 } from "../BaseController";
 import jwt from 'jsonwebtoken'
-
-import { AppError } from "../../utils/AppError";
-import { catchError } from "../../App/decorators/catchError";
-import { clearCache } from "../../App/decorators/cache";
-
 
 function getToken(id) {
   return jwt.sign({ user_id: id }, process.env.JWT_SECRET, {

@@ -21,6 +21,7 @@ function controller(prefix) {
             var method = Reflect.getMetadata(enum_metadata_1.metadata.method, target.prototype, key);
             var middlewares = (_a = Reflect.getMetadata(enum_metadata_1.metadata.middleware, target.prototype, key)) !== null && _a !== void 0 ? _a : [];
             var catchError = Reflect.getMetadata(enum_metadata_1.metadata.catchError, target.prototype, key);
+            var cacheClear = Reflect.getMetadata(enum_metadata_1.metadata.cache, target.prototype, key);
             var dataFromReq = (_b = Reflect.getMetadata(enum_metadata_1.metadata.validator, target.prototype, key)) !== null && _b !== void 0 ? _b : [];
             var validator = validator_decorator_1.requiredData(dataFromReq);
             if (path) {

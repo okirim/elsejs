@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var app_singelton_1 = require("./singeltons/app.singelton");
 require(".");
-var UnhandledErrors_1 = require("../utils/UnhandledErrors");
+var UnhandledErrors_1 = require("../exceptions/UnhandledErrors");
 var mongoose_singelton_1 = require("./singeltons/mongoose.singelton");
 var mongodb_1 = require("../database/mongodb");
 var _App = function () {

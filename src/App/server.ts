@@ -1,6 +1,6 @@
 import { App } from './singeltons/app.singelton';
 import '.';
-import { catchUnhandledErros, UncaughtException } from '../utils/UnhandledErrors';
+import { catchUnhandledErros, UncaughtException } from '../exceptions/UnhandledErrors';
 import { Mongoose } from './singeltons/mongoose.singelton';
 import { dbConnection } from '../database/mongodb';
 
