@@ -1,12 +1,13 @@
 {
-  "name": "express",
+  "name": "elegant",
   "version": "1.0.0",
   "description": "",
   "main": "./build/App/server.js",
   "scripts": {
     "start:build": "tsc -w",
     "start:run": "nodemon build/App/server.js",
-    "start": "concurrently npm:start:*"
+    "start": "concurrently npm:start:*",
+    "make":"node build/App/cli/cli.js"
   },
   "keywords": [],
   "author": "",
