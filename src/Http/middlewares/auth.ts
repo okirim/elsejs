@@ -3,7 +3,9 @@ import { AppError } from "../../exceptions/AppError";
 import { promisify } from 'util';
 
 import jwt from 'jsonwebtoken'
-export const auth = async (req, res, next) => {
+import { NextFunction, Response, RequestController } from '../BaseController';
+
+export const auth = async (req: RequestController, res: Response, next: NextFunction) => {
     if (!req.headers.authorization) {
         return next(new AppError("you should be logIn", 401));
     }
@@ -19,7 +21,7 @@ export const auth = async (req, res, next) => {
         return next(new AppError("password is changed, you should reconnect", 401));
 
     }
-
+    //@ts-ignore
     req.user = currentUser;
     next();
 

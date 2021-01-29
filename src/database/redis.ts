@@ -10,9 +10,9 @@ const client = redis.createClient(url)
    const exec = Mongoose.instance.Query.prototype.exec;
 
     //@ts-ignore
-    Mongoose.instance.Query.prototype.cache = function (options = { key: 'default' }) { // ex: options={key:user_id}
+    Mongoose.instance.Query.prototype.cache = function (hkey ='default') { // ex: options={key:user_id}
         this.cacheIsUsed = true;
-        this._hkey = options.key;
+        this._hkey = hkey;
         return this;
 
     }
@@ -36,7 +36,7 @@ const client = redis.createClient(url)
             const documents = JSON.parse(dataInCache)
 
             return Array.isArray(documents)
-                ? documents.map(doc => new this.model(doc)) //if it's array
+                ? documents.map(document => new this.model(document)) //if it's array
                 : new this.model(dataInCache)//if it's object 
         })//return data from cache as mongoose document
 
@@ -60,10 +60,6 @@ export const clearHach=(hkey)=>
 {
     client.del(JSON.stringify(hkey))
 }
-
-
-//----hkey should be number or string
-
 
 
 

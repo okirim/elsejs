@@ -71,7 +71,8 @@ import {
     POST,
     requiredInputs,
     AppError,
-    catchError
+    catchError,
+    cacheClear,
 } from "../BaseController";
 
 @controller('/${controllerName}')
@@ -79,6 +80,7 @@ export class LoginController {
      /**
       * @GET("/")
       * @catchError()
+      * @cacheClear(hashKey)// ex: user_id
       * @middleware(auth()) // last one to be executed !imporatnt 
       * @middleware(_ex())//first inde to be executed
       * @requiredInputs('name','email',....)

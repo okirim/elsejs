@@ -1,4 +1,4 @@
-import { User } from "../../models/User/User";
+
 
 import {
   RequestController,
@@ -10,9 +10,11 @@ import {
   POST,
   requiredInputs,
   AppError,
+  cacheClear,
   catchError
 } from "../BaseController";
 import jwt from 'jsonwebtoken'
+
 
 function getToken(id) {
   return jwt.sign({ user_id: id }, process.env.JWT_SECRET, {
@@ -23,6 +25,7 @@ function getToken(id) {
 export class LoginController {
 
   @GET("/login")
+  @cacheClear('default')
   @catchError()
  
   async login(req: RequestController, res: Response, next: NextFunction) {
@@ -30,6 +33,7 @@ export class LoginController {
     res.send(`
     <h1>kadiro</h1>
     `)
+    
 //next(new AppError('hello errora', 600))
   }
    
