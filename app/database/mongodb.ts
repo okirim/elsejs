@@ -2,10 +2,10 @@
 import mongoose from 'mongoose'
 
 
-export const dbConnection = (mongooseInstance: mongoose.Mongoose) => {
+export const dbConnection = () => {
 
   if (process.env.DB_LOCAL) {
-    mongooseInstance.connect(process.env.DB_LOCAL, {
+    mongoose.connect(process.env.DB_LOCAL, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,

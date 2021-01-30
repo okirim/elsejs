@@ -9,6 +9,3 @@ export * from '../BaseController';
 
 
 
-export * from './login.controller';
-
- export * from './tours.controller';

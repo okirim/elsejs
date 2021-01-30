@@ -2,10 +2,10 @@
 import express from 'express'
 
  export class App {
-    private static AppInstance: express.Express
+    private static AppInstance:any
 
 
-     static get instance(): express.Express {
+     static get instance(): any {
         if (!App.AppInstance) {
             return App.AppInstance= express();
         }
