@@ -17,3 +17,4 @@ __exportStar(require("../BaseController"), exports);
  *
  */
 __exportStar(require("./login.controller"), exports);
+__exportStar(require("./tours.controller"), exports);
