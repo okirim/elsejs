@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbConnection = void 0;
-exports.dbConnection = function (mongooseInstance) {
+var dbConnection = function (mongooseInstance) {
     if (process.env.DB_LOCAL) {
         mongooseInstance.connect(process.env.DB_LOCAL, {
             useNewUrlParser: true,
@@ -12,3 +12,4 @@ exports.dbConnection = function (mongooseInstance) {
             .catch(function (err) { return console.log('DB Error Connection: ', err); });
     }
 };
+exports.dbConnection = dbConnection;

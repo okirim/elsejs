@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "./source/build/server.js",
+  "bin": {
+    "else": "source/build/cli/cli.js"
+  },
   "scripts": {
     "start:build": "tsc -w",
     "start:run": "nodemon source/build/server.js",
     "start": "concurrently npm:start:*",
-    "make": "node source/build/cli/cli.js"
+    "make": "node source/build/cli/cli.js",
+    "prepare":"npm link"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +34,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.13",
+    "postinstall": "^0.7.0",
     "redis": "^3.0.2",
     "reflect-metadata": "^0.1.13",
     "validator": "^13.5.2"

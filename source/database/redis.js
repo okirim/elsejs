@@ -92,6 +92,7 @@ mongoose_singelton_1.Mongoose.instance.Query.prototype.exec = function () {
         });
     });
 };
-exports.clearHach = function (hkey) {
+var clearHach = function (hkey) {
     client.del(JSON.stringify(hkey));
 };
+exports.clearHach = clearHach;

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import process from "process";
 import { Command } from "commander";
 import { _createNewController } from "./newController";
@@ -8,7 +10,7 @@ program.version("0.0.1");
 const projectPath = process.cwd();
 
 program
-  .command("model <modelName>")
+  .command("m <modelName>")
   .description("create new Model")
   .action((modelName) => {
     _createNewModel(modelName,projectPath);
@@ -16,7 +18,7 @@ program
     
   });
 program
-  .command("controller <controllerName>")
+  .command("c <controllerName>")
   .description("create new controller")
   .action((controllerName) => {
     _createNewController(controllerName,projectPath);

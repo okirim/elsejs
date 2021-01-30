@@ -13,7 +13,7 @@ var __assign = (this && this.__assign) || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HandlingErrors = void 0;
 var AppError_1 = require("./AppError");
-exports.HandlingErrors = function (err, req, res, next) {
+var HandlingErrors = function (err, req, res, next) {
     err.statusCode = err.statusCode || 500;
     err.status = err.status || "error";
     if (process.env.NODE_ENV == "developement") {
@@ -39,6 +39,7 @@ exports.HandlingErrors = function (err, req, res, next) {
     }
     ;
 };
+exports.HandlingErrors = HandlingErrors;
 /*
   @devlopement env
 */

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -11,14 +12,14 @@ var program = new commander_1.Command();
 program.version("0.0.1");
 var projectPath = process_1.default.cwd();
 program
-    .command("model <modelName>")
+    .command("m <modelName>")
     .description("create new Model")
     .action(function (modelName) {
     newModel_1._createNewModel(modelName, projectPath);
     console.log(modelName + ".model created");
 });
 program
-    .command("controller <controllerName>")
+    .command("c <controllerName>")
     .description("create new controller")
     .action(function (controllerName) {
     newController_1._createNewController(controllerName, projectPath);

@@ -25,7 +25,7 @@ export default ${modelName} ;
         modelSubs
     );
     fs.appendFileSync(
-        `${projectPath}/src/Models/index.ts`,
+        `${projectPath}/app/Models/index.ts`,
         `\n export * from './${modelName}/${modelName}.model';`
     );
 }
