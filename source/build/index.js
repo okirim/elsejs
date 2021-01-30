@@ -1,8 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-require("dotenv/config");
-require("reflect-metadata");
-require("../Http/controllers");
 var router_singelton_1 = require("./singeltons/router.singelton");
 var app_singelton_1 = require("./singeltons/app.singelton");
 var exceptions_1 = require("../exceptions");

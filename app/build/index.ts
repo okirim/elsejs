@@ -1,6 +1,3 @@
-import "dotenv/config";
-import 'reflect-metadata';
-import '../Http/controllers';
 import { Router } from './singeltons/router.singelton';
 import { App } from './singeltons/app.singelton';
 import { HandlingErrors, page404 } from "../exceptions";
